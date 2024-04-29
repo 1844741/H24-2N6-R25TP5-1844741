@@ -34,9 +34,9 @@ namespace BaladeurMultiFormats
         //Lecture de l’en-tête du fichier soit uniquement la première ligne
         void LireEntete();
         //Obtient les paroles à partir d'un fichier binaire déjà ouvert
-        string LireParoles(StreamWriter pobjFichier);
+        string LireParoles(StreamReader pobjFichier);
         //Lit une ligne à partir du fichier passé en paramètre.
-        void SauterEntete(StreamWriter pobjFichier);
+        void SauterEntete(StreamReader pobjFichier);
         #endregion
     }
 }
