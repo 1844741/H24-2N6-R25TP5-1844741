@@ -24,7 +24,7 @@ namespace BaladeurMultiFormats
             MonHistorique = new Historique();
             // À COMPLÉTER...
 
-            //ChansonAAC ch = new ChansonAAC("Chansons\\Hurt.aac");
+            //ChansonWMA ch = new ChansonWMA("Chansons\\No one.wma");
             //Console.Write(ch.Artiste);
         }
         #endregion
