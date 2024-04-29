@@ -38,7 +38,7 @@ namespace BaladeurMultiFormats
         //Encode les paroles reçues en paramètre au format AAC, ensuite écrit ses paroles encodées dans le fichier passé en paramètre.
         public override void EcrireParoles(StreamWriter pobjFichier, string pParoles)
         {
-            pobjFichier.WriteLine(pParoles);
+            pobjFichier.WriteLine(OutilsFormats.EncoderAAC(pParoles));
         }
 
         //Lit la premiere ligne du fichier de la chanson et initialise les champs de la chanson (titre, artiste et année de création de la chanson)
@@ -69,7 +69,7 @@ namespace BaladeurMultiFormats
         //Récupère les paroles de la chanson à partir du fichier passé en paramètre, les décode selon le format AAC et les retourne
         public override string LireParoles(StreamReader pobjFichier)
         {
-            return pobjFichier.ReadToEnd();
+            return OutilsFormats.DecoderAAC(pobjFichier.ReadToEnd());
         }
         #endregion
     }
