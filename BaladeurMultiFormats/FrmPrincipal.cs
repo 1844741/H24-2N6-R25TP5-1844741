@@ -23,6 +23,9 @@ namespace BaladeurMultiFormats
             Text += APP_INFO;
             MonHistorique = new Historique();
             // À COMPLÉTER...
+
+            //ChansonAAC ch = new ChansonAAC("Chansons\\Hurt.aac");
+            //Console.Write(ch.Artiste);
         }
         #endregion
         //---------------------------------------------------------------------------------
