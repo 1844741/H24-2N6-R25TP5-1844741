@@ -11,13 +11,13 @@ namespace BaladeurMultiFormats
     {
         #region Champs
         //Champ qui contient l'année
-        private int m_annee;
+        private protected int m_annee;
         //Champ qui contient l'artiste
-        private string m_artiste;
+        private protected string m_artiste;
         //Champ qui contient le nom du fichier
-        private string m_nomFichier;
+        private protected string m_nomFichier;
         //Champ qui contient le titre
-        private string m_titre;
+        private protected string m_titre;
         #endregion
 
         #region Propriétés
@@ -30,7 +30,7 @@ namespace BaladeurMultiFormats
         //Obtient le nom de fichier de la chanson
         public string NomFichier { get { return m_nomFichier; } }
         //Cette propriété calculée va obtenir les paroles de la chanson à partir d’un fichier texte
-        public string Paroles { get; }
+        public string Paroles { get { return LireParoles(new StreamReader(m_nomFichier)); } }
         //Obtient le titre de la chanson
         public string Titre { get { return m_titre; } }
         #endregion
