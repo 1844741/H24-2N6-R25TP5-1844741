@@ -28,7 +28,7 @@ namespace BaladeurMultiFormats
             //Console.Write(ch.Artiste);
             Baladeur baladeur = new Baladeur();
             baladeur.AfficherLesChansons(lsvChansons);
-            baladeur.ConvertirVersAAC(2);
+            baladeur.ConvertirVersMP3(2);
         }
         #endregion
         //---------------------------------------------------------------------------------
