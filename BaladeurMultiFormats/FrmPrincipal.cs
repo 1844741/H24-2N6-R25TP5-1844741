@@ -26,6 +26,8 @@ namespace BaladeurMultiFormats
 
             //ChansonWMA ch = new ChansonWMA("Chansons\\No one.wma");
             //Console.Write(ch.Artiste);
+            Baladeur baladeur = new Baladeur();
+            int nb = baladeur.NbChansons;
         }
         #endregion
         //---------------------------------------------------------------------------------
