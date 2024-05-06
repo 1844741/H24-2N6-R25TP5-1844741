@@ -44,24 +44,35 @@ namespace BaladeurMultiFormats
             if (!Directory.Exists(NOM_RÉPERTOIRE))
                 throw new Exception();
 
+            int nbErreurs = 0;
             m_colChansons.Clear();
 
             foreach (string fichier in Directory.GetFiles(NOM_RÉPERTOIRE))
             {
-                switch (fichier.Split('.')[1].ToLower())
+                try
                 {
-                    case "aac":
-                        m_colChansons.Add(new ChansonAAC(fichier));
-                        break;
-                    case "mp3":
-                        m_colChansons.Add(new ChansonMP3(fichier));
-                        break;
-                    case "wma":
-                        m_colChansons.Add(new ChansonWMA(fichier));
-                        break;
-                    default: throw new Exception();
+                    switch (fichier.Split('.')[1].ToLower())
+                    {
+                        case "aac":
+                            m_colChansons.Add(new ChansonAAC(fichier));
+                            break;
+                        case "mp3":
+                            m_colChansons.Add(new ChansonMP3(fichier));
+                            break;
+                        case "wma":
+                            m_colChansons.Add(new ChansonWMA(fichier));
+                            break;
+                        default: throw new InvalidDataException();
+                    }
+                }
+                catch
+                {
+                    nbErreurs++;
                 }
             }
+
+            if (nbErreurs > 0)
+                MessageBox.Show(nbErreurs + " chansons" + " n'ont pu être chargées correctement", "Baladeur",MessageBoxButtons.OK,MessageBoxIcon.Error);
         }
 
         public void ConvertirVersAAC(int pIndex)
