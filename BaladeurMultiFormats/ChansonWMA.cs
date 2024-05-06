@@ -59,6 +59,7 @@ namespace BaladeurMultiFormats
         //Récupère les paroles de la chanson à partir du fichier passé en paramètre, les décode selon le format WMA et les retourne
         public override string LireParoles(StreamReader pobjFichier)
         {
+            SauterEntete(pobjFichier);
             string paroles = OutilsFormats.DecoderWMA(pobjFichier.ReadToEnd(), m_codage);
             pobjFichier.Close();
             return paroles;

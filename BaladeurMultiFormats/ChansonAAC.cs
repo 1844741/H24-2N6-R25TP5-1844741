@@ -58,6 +58,7 @@ namespace BaladeurMultiFormats
         //Récupère les paroles de la chanson à partir du fichier passé en paramètre, les décode selon le format AAC et les retourne
         public override string LireParoles(StreamReader pobjFichier)
         {
+            SauterEntete(pobjFichier);
             string paroles = OutilsFormats.DecoderAAC(pobjFichier.ReadToEnd());
             pobjFichier.Close();
             return paroles;
