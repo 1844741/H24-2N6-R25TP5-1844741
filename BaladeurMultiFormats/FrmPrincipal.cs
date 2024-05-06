@@ -45,6 +45,8 @@ namespace BaladeurMultiFormats
             }
 
             txtParoles.Text = paroles;
+            lblNbChansons.Text = MonBaladeur.NbChansons.ToString();
+
             MnuFormatConvertirVersAAC.Enabled = chanson != null && chanson.Format != "aac";
             MnuFormatConvertirVersMP3.Enabled = chanson != null && chanson.Format != "mp3";
             MnuFormatConvertirVersWMA.Enabled = chanson != null && chanson.Format != "wma";
