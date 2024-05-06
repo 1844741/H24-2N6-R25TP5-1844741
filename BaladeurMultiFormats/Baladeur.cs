@@ -64,7 +64,11 @@ namespace BaladeurMultiFormats
 
         public void ConvertirVersAAC(int pIndex)
         {
-            throw new NotImplementedException();
+            IChanson ch = ChansonAt(pIndex);
+            ChansonAAC nouvelleChanson = new ChansonAAC(NOM_RÉPERTOIRE, ch.Artiste, ch.Titre, ch.Annee);
+            nouvelleChanson.Ecrire(ch.Paroles);
+            
+            File.Delete(ch.NomFichier);
         }
 
         public void ConvertirVersMP3(int pIndex)

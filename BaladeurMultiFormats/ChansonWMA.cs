@@ -19,13 +19,14 @@ namespace BaladeurMultiFormats
         //Initialise une instance avec les données passées en paramètres en appelant le constructeur de la classe de base.
         public ChansonWMA(string pNomFichier) : base(pNomFichier)
         {
-            Format = "WMA";
+            Format = "wma";
         }
 
         //Initialise une instance avec les données passées en paramètres en appelant le constructeur de la classe de base.
         public ChansonWMA(string pRepertoire, string pArtiste, string pTitre, int pAnnee) : base(pRepertoire, pArtiste, pTitre, pAnnee)
         {
-            Format = "WMA";
+            Format = "wma";
+            m_nomFichier = pRepertoire + "\\" + pTitre + "." + Format;
         }
 
         //Écrit une ligne dans le fichier passé en paramètre.
@@ -58,7 +59,9 @@ namespace BaladeurMultiFormats
         //Récupère les paroles de la chanson à partir du fichier passé en paramètre, les décode selon le format WMA et les retourne
         public override string LireParoles(StreamReader pobjFichier)
         {
-            return OutilsFormats.DecoderWMA(pobjFichier.ReadToEnd(), m_codage);
+            string paroles = OutilsFormats.DecoderWMA(pobjFichier.ReadToEnd(), m_codage);
+            pobjFichier.Close();
+            return paroles;
         }
         #endregion
     }

@@ -45,7 +45,7 @@ namespace BaladeurMultiFormats
         //Le nom de fichier doit contenir le nom de répertoire , le nom de fichier et son format.
         public Chanson(string pRepertoire, string pArtiste, string pTitre, int pAnnee)
         {
-            m_nomFichier = pRepertoire;
+            m_nomFichier = pRepertoire + "\\" + pTitre + "." + Format;
             m_artiste = pArtiste;
             m_titre = pTitre;
             m_annee = pAnnee;
