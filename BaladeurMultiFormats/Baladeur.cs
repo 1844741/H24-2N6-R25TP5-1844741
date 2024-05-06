@@ -23,7 +23,15 @@ namespace BaladeurMultiFormats
 
         public void AfficherLesChansons(ListView pListView)
         {
-            throw new NotImplementedException();
+            pListView.Items.Clear();
+            foreach (Chanson ch in m_colChansons)
+            {
+                ListViewItem item = new ListViewItem(ch.Artiste);
+                item.SubItems.Add(ch.Titre);
+                item.SubItems.Add(ch.Annee.ToString());
+                item.SubItems.Add(ch.Format.ToUpper());
+                pListView.Items.Add(item);
+            }
         }
 
         public Chanson ChansonAt(int pIndex)
