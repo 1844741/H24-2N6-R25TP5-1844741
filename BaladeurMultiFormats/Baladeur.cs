@@ -82,7 +82,11 @@ namespace BaladeurMultiFormats
 
         public void ConvertirVersWMA(int pIndex)
         {
-            throw new NotImplementedException();
+            IChanson ch = ChansonAt(pIndex);
+            ChansonWMA nouvelleChanson = new ChansonWMA(NOM_RÉPERTOIRE, ch.Artiste, ch.Titre, ch.Annee);
+            nouvelleChanson.Ecrire(ch.Paroles);
+
+            File.Delete(ch.NomFichier);
         }
     }
 }
