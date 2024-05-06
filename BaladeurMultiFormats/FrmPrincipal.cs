@@ -14,6 +14,7 @@ namespace BaladeurMultiFormats
 
         #region Propriété : MonHistorique
         public Historique MonHistorique { get; }
+        public Baladeur MonBaladeur { get; }
         #endregion
         //---------------------------------------------------------------------------------
         #region FrmPrincipal
@@ -22,13 +23,11 @@ namespace BaladeurMultiFormats
             InitializeComponent();
             Text += APP_INFO;
             MonHistorique = new Historique();
+            MonBaladeur = new Baladeur();
             // À COMPLÉTER...
-
-            //ChansonWMA ch = new ChansonWMA("Chansons\\No one.wma");
-            //Console.Write(ch.Artiste);
-            Baladeur baladeur = new Baladeur();
-            baladeur.AfficherLesChansons(lsvChansons);
-            baladeur.ConvertirVersMP3(2);
+            MonBaladeur.AfficherLesChansons(lsvChansons);
+            lsvChansons.SelectedIndices.Add(0);
+            MettreAJourSelonContexte();
         }
         #endregion
         //---------------------------------------------------------------------------------
@@ -36,13 +35,28 @@ namespace BaladeurMultiFormats
         private void MettreAJourSelonContexte()
         {
             // À COMPLÉTER...
+            IChanson chanson = null;
+            string paroles = string.Empty;
+
+            if (lsvChansons.SelectedIndices.Count > 0)
+            {
+                chanson = MonBaladeur.ChansonAt(lsvChansons.SelectedIndices[0]);
+                paroles = chanson.Paroles;
+            }
+
+            txtParoles.Text = paroles;
+            MnuFormatConvertirVersAAC.Enabled = chanson != null && chanson.Format != "aac";
+            MnuFormatConvertirVersMP3.Enabled = chanson != null && chanson.Format != "mp3";
+            MnuFormatConvertirVersWMA.Enabled = chanson != null && chanson.Format != "wma";
         }
         #endregion
         //---------------------------------------------------------------------------------
         #region Événement : LsvChansons_SelectedIndexChanged
         private void LsvChansons_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // À COMPLÉTER...
+            MettreAJourSelonContexte();
+            if (lsvChansons.SelectedIndices.Count > 0)
+                MonHistorique.Add(new Consultation(DateTime.Now, MonBaladeur.ChansonAt(lsvChansons.SelectedIndices[0])));
         }
         #endregion
 
@@ -52,16 +66,34 @@ namespace BaladeurMultiFormats
         {
             // Vider l'historique car les références ne sont plus bonnes
             // À COMPLÉTER...
+            int i = lsvChansons.SelectedIndices[0];
+            MonHistorique.Clear();
+            MonBaladeur.ConvertirVersAAC(i);
+            MonBaladeur.ConstruireLaListeDesChansons();
+            MonBaladeur.AfficherLesChansons(lsvChansons);
+            lsvChansons.SelectedIndices.Add(i);
         }
         private void MnuFormatConvertirVersMP3_Click(object sender, EventArgs e)
         {
             // Vider l'historique car les références ne sont plus bonnes
             // À COMPLÉTER...
+            int i = lsvChansons.SelectedIndices[0];
+            MonHistorique.Clear();
+            MonBaladeur.ConvertirVersMP3(i);
+            MonBaladeur.ConstruireLaListeDesChansons();
+            MonBaladeur.AfficherLesChansons(lsvChansons);
+            lsvChansons.SelectedIndices.Add(i);
         }
         private void MnuFormatConvertirVersWMA_Click(object sender, EventArgs e)
         {
             // Vider l'historique car les références ne sont plus bonnes
             // À COMPLÉTER...
+            int i = lsvChansons.SelectedIndices[0];
+            MonHistorique.Clear();
+            MonBaladeur.ConvertirVersWMA(i);
+            MonBaladeur.ConstruireLaListeDesChansons();
+            MonBaladeur.AfficherLesChansons(lsvChansons);
+            lsvChansons.SelectedIndices.Add(i);
         }
         #endregion
         //---------------------------------------------------------------------------------

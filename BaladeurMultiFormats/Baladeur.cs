@@ -44,6 +44,8 @@ namespace BaladeurMultiFormats
             if (!Directory.Exists(NOM_RÉPERTOIRE))
                 throw new Exception();
 
+            m_colChansons.Clear();
+
             foreach (string fichier in Directory.GetFiles(NOM_RÉPERTOIRE))
             {
                 switch (fichier.Split('.')[1].ToLower())
